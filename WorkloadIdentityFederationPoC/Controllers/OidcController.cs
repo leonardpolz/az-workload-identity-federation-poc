@@ -18,9 +18,9 @@ public class OidcController(IOptions<OidcOptions> jwtOptions, IOidcProvider oidc
         var openIdConfig = new
         {
             issuer = options.Issuer,
-            authorization_endpoint = $"{options.Issuer}/authorize",
-            token_endpoint = $"{options.Issuer}/token",
-            jwks_uri = $"{options.Issuer}/.well-known/jwks.json",
+            authorization_endpoint = $"{options.Base}/authorize",
+            token_endpoint = $"{options.Base}/token",
+            jwks_uri = $"{options.Base}/.well-known/jwks.json",
             response_types_supported = new[] { "code", "token", "id_token" },
             subject_types_supported = new[] { "public" },
             id_token_signing_alg_values_supported = new[] { "RS256" },
