@@ -61,7 +61,7 @@ public class OidcController(IOptions<OidcOptions> jwtOptions, IOidcProvider oidc
     [HttpGet]
     public async Task<IActionResult> GetJwtAsync()
     {
-        var jwtToken = oidcProvider.Generate();
+        var jwtToken = oidcProvider.GenerateJwt();
         return Ok(jwtToken);
     }
 }

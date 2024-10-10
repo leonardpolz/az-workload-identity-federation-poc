@@ -33,7 +33,7 @@ public class OidcProvider(IOptions<OidcOptions> jwtOptions) : IOidcProvider
         return Base64UrlEncoder.Encode(hash);
     }
 
-    public string Generate()
+    public string GenerateJwt()
     {
         var options = jwtOptions.Value;
 
@@ -46,7 +46,8 @@ public class OidcProvider(IOptions<OidcOptions> jwtOptions) : IOidcProvider
 
         var claims = new ClaimsIdentity(new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, options.SubjectIdentifier)
+            new Claim(JwtRegisteredClaimNames.Sub, options.SubjectIdentifier),
+            new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
         });
 
         var token = new JwtSecurityToken(

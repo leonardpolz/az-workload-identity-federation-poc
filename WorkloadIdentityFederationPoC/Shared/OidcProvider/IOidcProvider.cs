@@ -2,6 +2,6 @@ namespace WorkloadIdentityFederationPoC.Shared.JwtProvider;
 
 public interface IOidcProvider
 {
-    string Generate();
+    string GenerateJwt();
     object GetJwkPublicKey();
 }
